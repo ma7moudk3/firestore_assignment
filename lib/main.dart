@@ -28,7 +28,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var city, country;
-  var setDefaultMake = true, setDefaultMakeModel = true;
+  var setDefaultcity = true, setDefaultcountry = true;
 
   @override
   void initState() {
@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (!snapshot.hasData) return Container();
-                  if (setDefaultMake) {
+                  if (setDefaultcity) {
                     city = snapshot.data.docs[0].get('name');
                     debugPrint('setDefault make: $city');
                   }
@@ -73,8 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         () {
                           debugPrint('make selected: $value');
                           city = value;
-                          setDefaultMake = false;
-                          setDefaultMakeModel = true;
+                          setDefaultcity = false;
+                          setDefaultcountry = true;
                         },
                       );
                     },
@@ -94,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       builder: (BuildContext context,
                           AsyncSnapshot<QuerySnapshot> snapshot) {
                       
-                        if (setDefaultMakeModel) {
+                        if (setDefaultcountry) {
                           country = snapshot.data.docs[0].get('city');
                         }
                         return DropdownButton(
